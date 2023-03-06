@@ -8,33 +8,70 @@ const People = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [responseData, setResponseData] = useState([])
-    
+    const [newHomeworld, setNewHomeworld] = useState("")
+    const [error, setError] = useState(false);
+
     const handleClear = () => {
         navigate("/");
     }
 
-    
+
     useEffect(() => {
         axios.get(`https://swapi.dev/api/people/${id}`)
-            .then((response) => {
-                setResponseData(response.data);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
-        },[id]);
-        console.log(responseData)
-    return (
-        <div>
-            <p>Name: {responseData.name}</p>
-            <p>Birth Year: {responseData.birth_year}</p>
-            <p>Skin Color: {responseData.skin_color}</p>
-            <p>Height: {responseData.height}</p>
+        .then((response) => {
+            setResponseData(response.data);
+            setError(false);
+            console.log(response)
+        })
+        .catch((err) => {
+            console.log(err);
+            setError(true)
+        })
+}, [id]);
+
+    console.log(responseData)
+
+    useEffect(() => {
+        axios.get(responseData.homeworld)
+        .then((response) => {
+            setNewHomeworld(response.data);
+            console.log(response)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}, [responseData]);
+
+console.log(newHomeworld)
+
+
+    if (error===false) {
+        return (
             <div>
+                <p>Name: {responseData.name}</p>
+                <p>Birth Year: {responseData.birth_year}</p>
+                <p>Skin Color: {responseData.skin_color}</p>
+                <p>Height: {responseData.height}</p>
+                <p>Homeworld: <a href={`${newHomeworld.url}`}>{newHomeworld.name}</a></p>
+                <div>
+                <br/>
+                    <button onClick={handleClear}>Clear Results</button>
+                </div>
+            </div>
+        )
+    }
+    else{
+        return (
+            <div>
+                <img
+                    src="https://media.tenor.com/TlfAvuz0tLMAAAAC/obi-wan-kenobi-these-are-not-the-droids.gif"
+                    alt="These aren't the droids you're looking for"
+                />
+                <br/>
                 <button onClick={handleClear}>Clear Results</button>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default People

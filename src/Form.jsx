@@ -22,8 +22,8 @@ const Form = () => {
                     <option value="films">Films</option>
                     <option value="people">People</option>
                     <option value="planets">Planets</option>
-                    {/* <option value="species">Species</option> */}
-                    {/* <option value="starships">Starships</option> */}
+                    <option value="species">Species</option>
+                    <option value="starships">Starships</option>
                     {/* <option value="vehicles">Vehicles</option> */}
                 </select>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
