@@ -42,7 +42,11 @@ const People = () => {
         })
 }, [responseData]);
 
-console.log(newHomeworld)
+    const stringURL = `${newHomeworld.url}`;
+    const lastChar = stringURL.slice(stringURL.length-1);
+    console.log(newHomeworld)
+    console.log(stringURL)
+    console.log(lastChar);
 
 
     if (error===false) {
@@ -52,7 +56,7 @@ console.log(newHomeworld)
                 <p>Birth Year: {responseData.birth_year}</p>
                 <p>Skin Color: {responseData.skin_color}</p>
                 <p>Height: {responseData.height}</p>
-                <p>Homeworld: <a href={`${newHomeworld.url}`}>{newHomeworld.name}</a></p>
+                <p>Homeworld: <a href={`/planets/${lastChar}`}>{newHomeworld.name}</a></p>
                 <div>
                 <br/>
                     <button onClick={handleClear}>Clear Results</button>
