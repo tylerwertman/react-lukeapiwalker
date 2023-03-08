@@ -43,7 +43,7 @@ const People = () => {
 }, [responseData]);
 
     const stringURL = `${newHomeworld.url}`;
-    const lastChar = stringURL.slice(stringURL.length-1);
+    const lastChar = stringURL.slice(stringURL.length-2);
     console.log(newHomeworld)
     console.log(stringURL)
     console.log(lastChar);

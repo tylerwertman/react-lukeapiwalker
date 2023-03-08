@@ -5,7 +5,7 @@ import People from './components/People';
 import Planets from './components/Planets';
 import Species from './components/Species';
 import Starships from './components/Starships';
-import Form from './Form';
+import Form from './components/Form';
 
 // import { useState } from 'react';
 
